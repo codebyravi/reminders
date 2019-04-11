@@ -1,0 +1,37 @@
+<!-- for adding todo -->
+<div align="center">
+  <div *ngIf="appState == 'default'">
+    <br>
+    <h1 style="color: #FFAF29">Reminders</h1>
+    <br>
+    <div class="form-group">
+      <form (submit)="addTodos()" id="forma">
+        <input style="opacity: 0.7" class="form-control" [(ngModel)]="text" type="text" placeholder="Add Reminders"
+          [ngModelOptions]="{standalone: true}">
+      </form>
+      <!-- </form> -->
+    </div>
+  </div>
+
+  <!-- for editing todo -->
+  <div *ngIf="appState == 'edit'">
+    <br>
+    <h1 style="color: #BD4600">Edit Reminders</h1>
+    <br>
+    <div class="form-group">
+      <form (submit)="updateTodo()" id="edit">
+        <input class="form-control" [(ngModel)]="text" type="text" placeholder="Add Reminders"
+          [ngModelOptions]="{standalone: true}">
+      </form>
+    </div>
+  </div>
+
+
+  <ul class="list-group" style="opacity:0.7">
+    <li *ngFor="let todo of todos" class="list-group-item" id="lili">
+      <span (click)="editTodo(todo)">{{todo.text}}&nbsp;</span><button style="float: right;"
+        class="btn btn-danger btn-small" (click)="deleteTodos(todo.text)">X</button>
+    </li>
+  </ul>
+
+</div>
